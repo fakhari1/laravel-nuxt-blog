@@ -15,7 +15,7 @@ class Responder
         ], $code);
     }
 
-    public function response($data = [], $code, $message = '')
+    public static function response(array $data = [], $code, $message = '')
     {
         return self::wrapper($code, $message, $data);
     }

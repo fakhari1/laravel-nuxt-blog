@@ -1,13 +1,18 @@
 <?php
 
 namespace Modules\Global\Extendables;
+use Lorisleiva\Actions\ActionRequest;
+use Modules\Global\Extendables\BaseAction;
+use Illuminate\Support\Facades\DB;
+use Modules\Global\Services\Api\Responder;
+
 
 class BaseCommandAction extends BaseAction
 {
     public function handle(array $attributes = [])
     {
         $this->fill($attributes);
-        $this->validateAttributes();
+        dd($this->validateAttributes());
         $result = null;
         DB::beginTransaction();
         try {
@@ -25,8 +30,11 @@ class BaseCommandAction extends BaseAction
     public function asController(ActionRequest $request)
     {
         $this->fillFromRequest($request);
+        $this->validateAttributes();
         return Responder::response(
-            $this->handle($this->attributes), 200, trans('Request successfully processed')
+            $this->handle($this->attributes),
+            200,
+            trans('Request successfully processed')
         );
     }
 }

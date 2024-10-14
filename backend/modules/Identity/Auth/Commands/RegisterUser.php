@@ -7,9 +7,9 @@ use Modules\Identity\User\Models\User;
 
 class RegisterUser extends BaseCommandAction
 {
-    public function handle($attributes = []): User
+    public function execute(array $attributes = [])
     {
-
+        dd($attributes);
     }
 
     public function authorize()
