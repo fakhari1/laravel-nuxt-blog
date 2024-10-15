@@ -9,7 +9,7 @@ class RegisterUser extends BaseCommandAction
 {
     public function execute(array $attributes = [])
     {
-        dd($attributes);
+
     }
 
     public function authorize()

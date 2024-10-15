@@ -2,16 +2,23 @@
 
 namespace Modules\Identity\Auth\Queries;
 
+use Illuminate\Support\Facades\Auth;
 use Lorisleiva\Actions\ActionRequest;
 use Modules\Global\Extendables\BaseAction;
-use Modules\Identity\User\Models\User;
+use Modules\Global\Services\Api\Responder;
 
 class GetAuthUserResource extends BaseAction
 {
-
-    public function handle(ActionRequest $request): User
+    public function handle(ActionRequest $request)
     {
-        return $request->user();
-    }
+        if (Auth::check()) {
+            return Responder::success([
+                'user' => $request->user()
+            ], [
+                'User still logged in'
+            ]);
+        }
 
+        Responder::throwValidationError('Unauthenticated');
+    }
 }
