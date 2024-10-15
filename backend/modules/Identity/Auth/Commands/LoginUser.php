@@ -30,7 +30,7 @@ class LoginUser extends BaseCommandAction
 
             $user = Auth::user();
 
-            $token = $user->createToken('$user$token')->plainTextToken;
+            $token = $user->createToken($user->mobile)->plainTextToken;
 
             return Responder::success([
                 'token' => $token,

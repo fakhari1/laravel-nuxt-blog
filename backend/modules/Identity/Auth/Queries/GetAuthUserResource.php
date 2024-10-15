@@ -12,8 +12,12 @@ class GetAuthUserResource extends BaseAction
     public function handle(ActionRequest $request)
     {
         if (Auth::check()) {
+            $user = $request->user();
             return Responder::success([
-                'user' => $request->user()
+                'user' => $user,
+                'token' => $user->currentAccessToken(),
+//                'token' => $user->tokens()->where('personal_access_tokens.name', $user->mobile)->first(),
+                'bearer_token' => $request->bearerToken(),
             ], [
                 'User still logged in'
             ]);
