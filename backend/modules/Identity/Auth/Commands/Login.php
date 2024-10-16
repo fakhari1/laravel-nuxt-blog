@@ -8,7 +8,7 @@ use Modules\Global\Extendables\BaseCommandAction;
 use Modules\Global\Services\Api\Responder;
 use Modules\Identity\User\Models\User;
 
-class LoginUser extends BaseCommandAction
+class Login extends BaseCommandAction
 {
     public function execute(array $attributes = [])
     {

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Modules\Global\Extendables\BaseCommandAction;
 use Modules\Global\Services\Api\Responder;
 
-class LogoutUser extends BaseCommandAction
+class Logout extends BaseCommandAction
 {
     public function execute(array $attributes = [])
     {
