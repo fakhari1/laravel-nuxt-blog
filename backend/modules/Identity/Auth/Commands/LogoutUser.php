@@ -10,11 +10,11 @@ class LogoutUser extends BaseCommandAction
 {
     public function execute(array $attributes = [])
     {
-        if (Auth::check()) {
-            Auth::guard('sanctum')->logout();
-            request()->user()->currentAccessToken()->delete();
 
-            return Responder::success('', 'Successfully logged out');
+        if (Auth::check()) {
+            auth('sanctum')->user()->currentAccessToken()->delete();
+
+            return Responder::success(null, 'Successfully logged out');
         }
 
         Responder::throwValidationError('Unauthenticated');

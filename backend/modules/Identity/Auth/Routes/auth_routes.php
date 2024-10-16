@@ -13,7 +13,7 @@ Route::prefix('api')->group(function () {
     });
 
     Route::middleware(['auth:sanctum'])->group(function () {
-        Route::get('auth-user', GetAuthUserResource::class);
+        Route::get('user', GetAuthUserResource::class);
         Route::post('logout', LogoutUser::class);
     });
 });
