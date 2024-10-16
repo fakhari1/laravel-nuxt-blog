@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Content\Models\Traits;
+namespace Modules\Content\Models\Traits\Article;
 
 use Modules\Identity\User\Models\User;
 
-trait PostRelations
+trait ArticleRelations
 {
     public function user()
     {

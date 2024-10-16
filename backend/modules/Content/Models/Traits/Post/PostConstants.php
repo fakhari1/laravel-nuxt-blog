@@ -1,8 +1,7 @@
 <?php
 
-namespace Modules\Content\Models\Traits;
+namespace Modules\Content\Models\Traits\Post;
 
-use Modules\Content\Database\Factories\PostFactory;
 use Modules\Global\Extendables\BaseModel;
 
 class PostConstants extends BaseModel
