@@ -16,4 +16,7 @@ class ArticleConstants extends BaseModel
         'slug',
     ];
 
+    const DISK_PUBLIC = 'public';
+    const DISK_PRIVATE = 'private';
+
 }
