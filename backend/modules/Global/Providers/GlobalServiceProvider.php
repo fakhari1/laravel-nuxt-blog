@@ -19,6 +19,6 @@ class GlobalServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
+        $this->mergeConfigFrom(modules_path('global/Configs/global.php'), 'global');
     }
 }
