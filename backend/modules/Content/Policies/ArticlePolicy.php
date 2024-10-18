@@ -38,7 +38,6 @@ class ArticlePolicy
      */
     public function update(User|Authenticatable $user, Article $article): bool
     {
-        return true;
         return
             $user->hasPermissionTo(Permission::PERMISSION_MANAGE_ARTICLES)
             ||

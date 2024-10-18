@@ -2,6 +2,7 @@
 
 namespace Modules\Content\Commands\Article;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\ActionRequest;
 use Modules\Content\Models\Article;
@@ -26,7 +27,7 @@ class UpdateArticle extends BaseCommandAction
     {
         $this->article = Article::findOrFail($request->article_id);
 
-        return (new ArticlePolicy())->update(me(), $this->article);
+        return gate_authorization('update', $this->article);
     }
 
     public function rules(): array
