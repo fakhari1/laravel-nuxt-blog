@@ -33,7 +33,7 @@ class Uploader
         $fileName .= '.' . $file->getClientOriginalExtension();
 
         self::$fileName = $fileName;
-        self::$filePath = ($isPublic ? 'public/' : 'private/') . $path . '/';
+        self::$filePath = $path . '/';
         return $file->storeAs($path, $fileName, $isPublic ? 'public' : 'private');
     }
 

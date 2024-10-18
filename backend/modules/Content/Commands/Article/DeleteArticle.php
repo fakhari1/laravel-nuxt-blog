@@ -2,24 +2,27 @@
 
 namespace Modules\Content\Commands\Article;
 
+use Illuminate\Support\Facades\Storage;
 use Lorisleiva\Actions\ActionRequest;
 use Modules\Content\Models\Article;
 use Modules\Global\Extendables\BaseCommandAction;
 
 class DeleteArticle extends BaseCommandAction
 {
-    private Article $article;
-
     public function execute(array $attributes = [])
     {
-        dd($attributes);
-        return $this->article->delete();
+        $article = Article::findOrFail($attributes['article_id']);
+
+        if (Storage::disk($article->disk)->exists($article->image)) {
+            Storage::disk($article->disk)->delete($article->image);
+        }
+
+        return $article->delete();
     }
 
     public function authorize(ActionRequest $request)
     {
-        $this->article = Article::findOrFail($request->article_id);
-        // return gate_authorization('update', $this->article);
+        // return gate_authorization('update', $article);
         return true;
     }
 
