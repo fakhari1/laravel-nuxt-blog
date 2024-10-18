@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class Uploader
 {
     public const GENERATE_NEW_NAME = 'generate_new_name';
+    private static string $fileName;
+    private static string $filePath;
 
     public function __construct($requestFileName, $path, $name, $isPublic)
     {
@@ -31,17 +33,20 @@ class Uploader
 
         $fileName .= '.' . $file->getClientOriginalExtension();
 
-        $file->storeAs($path, $fileName, $isPublic ? 'public' : 'private');
-
-        return $fileName;
+        self::$fileName = $fileName;
+        self::$filePath = ($isPublic ? 'public/' : 'private/') . $path . '/';
+        return $file->storeAs($path, $fileName, $isPublic ? 'public' : 'private');
     }
 
     public static function put($requestFileName, $path = '/', $name = '', $isPublic = true)
     {
-        new self($requestFileName,
+        new self(
+            $requestFileName,
             $path,
             $name,
             $isPublic
         );
+
+        return self::$filePath . self::$fileName;
     }
 }

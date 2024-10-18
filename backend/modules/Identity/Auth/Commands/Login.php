@@ -12,29 +12,20 @@ class Login extends BaseCommandAction
 {
     public function execute(array $attributes = [])
     {
-        $user = null;
         $user = User::where('mobile', $attributes['mobile'])->first();
 
         if (!$user) {
-            $user = User::create([
+            User::create([
                 'mobile' => $attributes['mobile'],
                 'password' => Hash::make($attributes['password'])
             ]);
         }
 
-        if ($user) {
-            $user = Auth::attempt([
-                'mobile' => $attributes['mobile'],
-                'password' => $attributes['password']
-            ]);
-
-            $user = Auth::user();
-
-            $token = $user->createToken($user->mobile)->plainTextToken;
-
+        if (Auth::attempt($attributes)) {
+            $token = me()->createToken(me()->mobile)->plainTextToken;
             return Responder::success([
                 'token' => $token,
-                'user' => $user
+                'user' => me()
             ], 'User logged in successfully');
         }
 
