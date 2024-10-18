@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('slug')->nullable();
             $table->boolean('is_commentable')->default(false);
             $table->string('image')->nullable();
-            $table->boolean('draft')->default(true);
+            $table->boolean('is_draft')->default(true);
             $table->text('description')->nullable();
             $table->string('disk')->default(Article::DISK_PUBLIC);
             $table->boolean('uploaded')->default(false);

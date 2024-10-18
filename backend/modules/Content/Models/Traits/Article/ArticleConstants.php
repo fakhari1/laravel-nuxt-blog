@@ -11,7 +11,7 @@ class ArticleConstants extends BaseModel
         'is_commentable',
         'image',
         'title',
-        'draft',
+        'is_draft',
         'description',
         'slug',
     ];
