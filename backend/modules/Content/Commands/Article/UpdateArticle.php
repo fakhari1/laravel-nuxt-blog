@@ -2,11 +2,9 @@
 
 namespace Modules\Content\Commands\Article;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Lorisleiva\Actions\ActionRequest;
 use Modules\Content\Models\Article;
-use Modules\Content\Policies\ArticlePolicy;
 use Modules\Global\Extendables\BaseCommandAction;
 
 class UpdateArticle extends BaseCommandAction
@@ -20,7 +18,6 @@ class UpdateArticle extends BaseCommandAction
             'description' => $attributes['description'],
             'is_draft' => $attributes['is_draft'] == 1,
         ]);
-
     }
 
     public function authorize(ActionRequest $request)

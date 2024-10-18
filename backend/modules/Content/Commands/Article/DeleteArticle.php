@@ -12,6 +12,7 @@ class DeleteArticle extends BaseCommandAction
 
     public function execute(array $attributes = [])
     {
+        dd($attributes);
         return $this->article->delete();
     }
 

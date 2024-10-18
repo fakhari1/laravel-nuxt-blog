@@ -2,8 +2,10 @@
 
 namespace Modules\Content\Queries\Article;
 
+use Lorisleiva\Actions\ActionRequest;
 use Modules\Content\Models\Article;
 use Modules\Global\Extendables\BaseAction;
+use Modules\Global\Services\Api\Responder;
 
 class GetArticle extends BaseAction
 {
@@ -12,7 +14,7 @@ class GetArticle extends BaseAction
         return Article::findOrFail($attributes['article_id']);
     }
 
-    public function authorize()
+    public function authorize(ActionRequest $request)
     {
         return true;
     }
@@ -22,5 +24,14 @@ class GetArticle extends BaseAction
         return [
             'article_id' => ['required', 'exists:articles,id']
         ];
+    }
+
+    public function asController(ActionRequest $request)
+    {
+        $this->fillFromRequest($request);
+
+        return Responder::response(
+            $this->handle($this->validateAttributes())
+        );
     }
 }
