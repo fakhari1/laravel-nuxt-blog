@@ -3,7 +3,6 @@
 namespace Modules\Global\Services\Upload;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class Uploader
 {
